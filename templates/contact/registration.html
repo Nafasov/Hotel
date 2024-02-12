@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+    <div class="breadcrumb-area contact-breadcrumb bg-img bg-overlay jarallax"
+     style="background-image: url({% static 'img/bg-img/18.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center mt-100">
+                    <h2 class="page-title">Registration</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Registration</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="roberto-contact-form-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                 <div class="roberto-contact-form">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-3 "></div>
+                                <div class="col-md-6">
+                                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
+                                        <input type="text" name="message-name" class="form-control mb-30"
+                                               placeholder="Your Name">
+                                    </div>
+                                    <div class="col-12 text-center  wow fadeInUp" data-wow-delay="100ms">
+                                        <input type="password" name="password" class="form-control"
+                                               placeholder="Password">
+                                    </div>
+
+                                    <div  style="margin-top: 25px" class="mt-5 col-12 text-center  wow fadeInUp" data-wow-delay="100ms">
+                                        <input type="password" name="1password" class="form-control"
+                                               placeholder="Confirm Password">
+                                    </div>
+
+                                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
+                                        <button type="reset" class="btn roberto-btn mt-15">Send Message</button>
+                                    </div>
+                                    <div style="margin-top: 25px" class="text-center wow fadeInUp">
+                                        <p>If you have an account already <a href="{% url 'contact:login' %}">login</a>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
