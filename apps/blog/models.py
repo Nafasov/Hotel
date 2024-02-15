@@ -48,7 +48,7 @@ class ContentNewBlog(BaseModel):
 
 class CommentNewBlog(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='comments', null=True)
-    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL)
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
     message = models.TextField()
     parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, related_name="blog_children")
     top_level_comment_id = models.IntegerField(null=True, blank=True)
@@ -60,7 +60,7 @@ class CommentNewBlog(BaseModel):
 
 class BlogNewLike(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='likes', null=True)
-    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL)
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
 
 
 @receiver(pre_save, sender=CommentNewBlog)

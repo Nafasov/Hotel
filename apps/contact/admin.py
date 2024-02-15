@@ -7,5 +7,4 @@ from .models import Contact
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'created_date')
     search_fields = ('name', 'email', 'created_date')
-    date_hierarchy = ('created_date', )
     list_per_page = 20

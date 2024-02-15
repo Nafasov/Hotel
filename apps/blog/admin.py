@@ -19,7 +19,6 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author', )
     readonly_fields = ('created_date', 'modified_date', )
     date_hierarchy = 'created_date'
-    ordering = ('-id', )
     list_per_page = 10
 
 
@@ -30,7 +29,7 @@ class SendBlogNEWAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ("id", 'title', 'created_date', )
+    list_display = ('id', 'title', 'created_date', )
 
 
 class ContentNewBlogAdmin(admin.TabularInline):
@@ -43,12 +42,12 @@ class BlogNewLikeAdmin(admin.TabularInline):
 
 @admin.register(BlogNEWPost)
 class BlogNEWPostAdmin(admin.ModelAdmin):
-    inlines = [ContentNewBlogAdmin, BlogNewLikeAdmin]
+    inlines = (ContentNewBlogAdmin, BlogNewLikeAdmin)
     list_display = ("id", 'author', 'title', 'created_date', )
     list_filter = ("created_date", )
     search_fields = ('title', 'author', 'id')
     readonly_fields = ('created_date', 'modified_date', 'slug')
-    filter_horizontal = ('tag', )
+    filter_horizontal = ('tags', )
     date_hierarchy = 'created_date'
     ordering = ('id', )
     list_per_page = 10
@@ -56,7 +55,7 @@ class BlogNEWPostAdmin(admin.ModelAdmin):
 
 @admin.register(CommentNewBlog)
 class CommentNewBlogAdmin(admin.ModelAdmin):
-    list_display = ("id", 'author', 'title', 'created_date', )
+    list_display = ("id",'created_date', )
     list_filter = ("created_date", )
     search_fields = ('title', 'author', )
     date_hierarchy = 'created_date'

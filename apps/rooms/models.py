@@ -10,6 +10,7 @@ class RoomServices(BaseModel):
 
 class Rooms(BaseModel):
     title = models.CharField(max_length=221)
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
     services = models.ManyToManyField(RoomServices)
     bed = models.CharField(max_length=221)
     cost = models.CharField(max_length=25)
@@ -44,6 +45,7 @@ class RoomData(models.Model):
 
 class RoomComments(BaseModel):
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='comments')
     comment = models.TextField()
     room_star1 = models.BooleanField(default=False)
     room_star2 = models.BooleanField(default=False)

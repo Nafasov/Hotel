@@ -26,7 +26,7 @@ class ServiceAdmin(admin.ModelAdmin):
 
 @admin.register(Partners)
 class PartnersAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'created_date')
+    list_display = ('id', 'created_date')
 
 
 @admin.register(HomeBanner)
