@@ -14,6 +14,17 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class BlogPost(BaseModel):
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=221)
+    image = models.ImageField(upload_to='blog/post')
+    description = models.TextField()
+
+
+class SendBlogNEW(BaseModel):
+    email = models.EmailField()
+
+
 class Tag(BaseModel):
     title = models.CharField(max_length=255)
 
@@ -47,15 +58,9 @@ class CommentNewBlog(BaseModel):
         return model.objects.filter(top_level_comment_id=self.id)
 
 
-class BlogLike(BaseModel):
+class BlogNewLike(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='likes', null=True)
     author = models.ForeignKey('auth.User', on_delete=models.SET_NULL)
-
-
-class BlogPost(BaseModel):
-    title = models.CharField(max_length=221)
-    image = models.ImageField(upload_to='blog/post')
-    description = models.TextField()
 
 
 @receiver(pre_save, sender=CommentNewBlog)
@@ -67,7 +72,7 @@ def comment_pre_save(sender, instance, **kwargs):
             instance.top_level_comment_id = instance.parent.top_level_comment_id
 
 
-@receiver(pre_save, sender=BlogPost)
+@receiver(pre_save, sender=BlogNEWPost)
 def blog_post_pre_save(sender, instance, **kwargs):
     if not instance.slug:
         instance.slug = slugify(instance.title + ' - ' + timezone.now().date())
