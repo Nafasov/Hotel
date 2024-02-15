@@ -17,6 +17,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_display = ("id", 'author', 'title', 'created_date', )
     list_filter = ("created_date", )
     search_fields = ('title', 'author', )
+    readonly_fields = ('created_date', 'modified_date', )
     date_hierarchy = 'created_date'
     ordering = ('-id', )
     list_per_page = 10
@@ -46,6 +47,8 @@ class BlogNEWPostAdmin(admin.ModelAdmin):
     list_display = ("id", 'author', 'title', 'created_date', )
     list_filter = ("created_date", )
     search_fields = ('title', 'author', 'id')
+    readonly_fields = ('created_date', 'modified_date', 'slug')
+    filter_horizontal = ('tag', )
     date_hierarchy = 'created_date'
     ordering = ('id', )
     list_per_page = 10
