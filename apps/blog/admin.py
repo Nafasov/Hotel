@@ -34,10 +34,12 @@ class TagAdmin(admin.ModelAdmin):
 
 class ContentNewBlogAdmin(admin.TabularInline):
     model = ContentNewBlog
+    extra = 1
 
 
 class BlogNewLikeAdmin(admin.TabularInline):
     model = BlogNewLike
+    extra = 1
 
 
 @admin.register(BlogNEWPost)

@@ -7,6 +7,9 @@ class RoomServices(BaseModel):
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
 
+    def __str__(self):
+        return self.title
+
 
 class Rooms(BaseModel):
     title = models.CharField(max_length=221)
@@ -34,13 +37,16 @@ class RoomImages(models.Model):
     image = models.ImageField(upload_to='images/')
 
 
-class RoomData(models.Model):
+class Booking(models.Model):
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='datas')
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
     check_in = models.DateTimeField()
     check_out = models.DateTimeField()
     adults = models.IntegerField()
     children = models.IntegerField()
-    is_bloc = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.check_out
 
 
 class RoomComments(BaseModel):

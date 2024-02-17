@@ -42,7 +42,7 @@ class BlogNEWPost(BaseModel):
 
 class ContentNewBlog(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='contents', null=True)
-    content = RichTextField(null=True, blank=True)
+    content = models.TextField()
     is_quote = models.BooleanField(default=False)
 
 
@@ -75,6 +75,6 @@ def comment_pre_save(sender, instance, **kwargs):
 @receiver(pre_save, sender=BlogNEWPost)
 def blog_post_pre_save(sender, instance, **kwargs):
     if not instance.slug:
-        instance.slug = slugify(instance.title + ' - ' + timezone.now().date())
+        instance.slug = slugify(instance.title + ' - ' + str(timezone.now().date()))
 
 

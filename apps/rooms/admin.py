@@ -5,7 +5,7 @@ from .models import (
                     Rooms,
                     RoomContent,
                     RoomImages,
-                    RoomData,
+                    Booking,
                     RoomComments,
                                     )
 
@@ -17,14 +17,17 @@ class RoomsAdmin(admin.ModelAdmin):
 
 class RoomContentAdmin(admin.TabularInline):
     model = RoomContent
+    extra = 1
 
 
 class RoomImagesAdmin(admin.TabularInline):
     model = RoomImages
+    extra = 1
 
 
 class RoomDataAdmin(admin.TabularInline):
-    model = RoomData
+    model = Booking
+    extra = 1
 
 
 @admin.register(Rooms)
