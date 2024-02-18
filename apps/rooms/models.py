@@ -14,7 +14,7 @@ class RoomServices(BaseModel):
 class Rooms(BaseModel):
     title = models.CharField(max_length=221)
     author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
-    services = models.ManyToManyField(RoomServices)
+    services = models.ManyToManyField(RoomServices, related_name='services')
     bed = models.CharField(max_length=221)
     cost = models.CharField(max_length=25)
     size = models.CharField(max_length=25)
