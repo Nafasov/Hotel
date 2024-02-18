@@ -1,4 +1,6 @@
 {% load static %}
+{% load Me_contact %}
+{% me_contact as me_contact %}
 
 
 <header class="header-area">
@@ -17,19 +19,18 @@
             <div class="row">
                 <div class="col-6">
                     <div class="top-header-content">
-                        <a href="#"><i class="icon_phone"></i> <span>(123) 456-789-1230</span></a>
-                        <a href="#"><i class="icon_mail"></i> <span><span class="__cf_email__"
-                                                                          data-cfemail="ea83848c85c48985868598868388aa8d878b8386c4898587">[email&#160;protected]</span></span></a>
+                        <a href="tel://{{ me_contact.phone }}"><i class="icon_phone"></i> <span>{{ me_contact.phone }}</span></a>
+                        <a href="mailto:{{ me_contact.email }}"><i class="icon_mail"></i>{{ me_contact.email }}</a>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="top-header-content">
 
                         <div class="top-social-area ml-auto">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="{{ me_contact.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="{{ me_contact.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="{{ me_contact.linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="{{ me_contact.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

@@ -13,4 +13,4 @@ def me_contact():
 
 @register.simple_tag()
 def partners():
-    return Partners.objects.get()
+    return Partners.objects.all()

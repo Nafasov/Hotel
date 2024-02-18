@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, View
 
 
-from .models import HomeBanner, Service
+from .models import HomeBanner, Service, AboutUs
 from apps.blog.models import BlogPost, BlogNEWPost
 from apps.rooms.models import Rooms, RoomComments
 
@@ -29,5 +29,15 @@ class HomeView(View):
         return render(request, self.template_name, context)
 
 
-class AboutView(TemplateView):
+class AboutView(View):
     template_name = 'main/about.html'
+
+    def get(self, request, *args, **kwargs):
+        about_us = AboutUs.objects.get()
+        blog_new_posts = BlogNEWPost.objects.order_by('-id')[:3]
+        context = {
+            'about_us': about_us,
+            'blog_new_posts': blog_new_posts
+        }
+        return render(request, self.template_name, context)
+
