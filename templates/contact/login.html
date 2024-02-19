@@ -32,20 +32,19 @@
                 <div class="col-12">
                     <div class="roberto-contact-form">
                         <form method="post">
+                            {% csrf_token %}
                             <div class="row justify-content-md-center">
                                 <div class="col-md-3 "></div>
                                 <div class="col-md-6">
                                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="text" name="message-name" class="form-control mb-30"
-                                               placeholder="Your Name">
+                                       {{ form.username }}
                                     </div>
                                     <div class="col-12 text-center  wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="password" name="password" class="form-control"
-                                               placeholder="Password">
+                                       {{ form.password }}
                                     </div>
 
                                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
-                                        <button type="reset" class="btn roberto-btn mt-15">Send Message</button>
+                                        <button type="submit" class="btn roberto-btn mt-15">Send </button>
                                     </div>
                                     <div style="margin-top: 25px" class="text-center wow fadeInUp">
                                         <p>If you don't have an account <a href="{% url 'contact:register' %}">register</a> first.</p>

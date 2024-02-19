@@ -19,6 +19,9 @@ class MeContact(BaseModel):
     linkedin = models.URLField(null=True, blank=True)
     twitter = models.URLField(null=True, blank=True)
     instagram = models.URLField(null=True, blank=True)
+    address = models.CharField(max_length=35, null=True, blank=True)
+    open_time = models.TimeField(null=True, blank=True)
+    close_time = models.TimeField(null=True, blank=True)
 
 
 class Service(BaseModel):
