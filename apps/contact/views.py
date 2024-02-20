@@ -28,8 +28,8 @@ class ContactView(View):
 
 class LoginView(auth_views.LoginView):
     # form = UserForm
-    next_page = reverse_lazy('main:home')
     template_name = 'contact/login.html'
+    next_page = reverse_lazy('main:home')
 
     def get(self, request, *args, **kwargs):
         form = UserForm()

@@ -43,8 +43,8 @@
                                 <a style="margin-left: 30px">{{ request.user }}</a>
                                 <a href="{% url 'contact:logout' %}"><span> logout </span><i class="fa fa-sign-out"></i></a>
                             {% else %}
-                                <a style="margin-left: 30px">anonim</a>
-                                <a href="{% url 'contact:login' %}">login <i class="fa fa-sign-in"></i> </a>
+                                <a style="margin-left: 30px"></a>
+                                <a href="{% url 'contact:login' %}"><span>login </span><i class="fa fa-sign-in"></i> </a>
                             {% endif %}
                         </div>
                     </div>
