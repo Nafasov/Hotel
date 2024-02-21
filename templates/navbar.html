@@ -43,7 +43,7 @@
                                 <a style="margin-left: 30px">{{ request.user }}</a>
                                 <a href="{% url 'contact:logout' %}"><span> logout </span><i class="fa fa-sign-out"></i></a>
                             {% else %}
-                                <a style="margin-left: 30px"></a>
+                                <a style="margin-left: 20px">  </a>
                                 <a href="{% url 'contact:login' %}"><span>login </span><i class="fa fa-sign-in"></i> </a>
                             {% endif %}
                         </div>
@@ -78,25 +78,25 @@
                                 <li class="active"><a href="{% url 'main:home' %}">Home</a></li>
                                 <li><a href="{% url 'rooms:rooms' %}">Rooms</a></li>
                                 <li><a href="{% url 'main:about' %}">About Us</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="{% url 'main:home' %}">- Home</a></li>
-                                        <li><a href="{% url 'rooms:rooms' %}">- Rooms</a></li>
-                                        <li><a href="{% url 'rooms:room_detail' %}">- Single Rooms</a></li>
-                                        <li><a href="{% url 'main:about' %}">- About Us</a></li>
-                                        <li><a href="{% url 'blog:blog' %}">- Blog</a></li>
-                                        <li><a href="{% url 'blog:blog-detail' %}">- Single Blog</a></li>
-                                        <li><a href="{% url 'contact:contact' %}">- Contact</a></li>
-                                        <li><a href="#">- Dropdown</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">- Dropdown Item</a></li>
-                                                <li><a href="#">- Dropdown Item</a></li>
-                                                <li><a href="#">- Dropdown Item</a></li>
-                                                <li><a href="#">- Dropdown Item</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+{#                                <li><a href="#">Pages</a>#}
+{#                                    <ul class="dropdown">#}
+{#                                        <li><a href="{% url 'main:home' %}">- Home</a></li>#}
+{#                                        <li><a href="{% url 'rooms:rooms' %}">- Rooms</a></li>#}
+{#                                        <li><a href="{% url 'rooms:room_detail' %}">- Single Rooms</a></li>#}
+{#                                        <li><a href="{% url 'main:about' %}">- About Us</a></li>#}
+{#                                        <li><a href="{% url 'blog:blog' %}">- Blog</a></li>#}
+{#                                        <li><a href="{% url 'blog:single-blog' %}">- Single Blog</a></li>#}
+{#                                        <li><a href="{% url 'contact:contact' %}">- Contact</a></li>#}
+{#                                        <li><a href="#">- Dropdown</a>#}
+{#                                            <ul class="dropdown">#}
+{#                                                <li><a href="#">- Dropdown Item</a></li>#}
+{#                                                <li><a href="#">- Dropdown Item</a></li>#}
+{#                                                <li><a href="#">- Dropdown Item</a></li>#}
+{#                                                <li><a href="#">- Dropdown Item</a></li>#}
+{#                                            </ul>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                </li>#}
                                 <li><a href="{% url 'blog:blog' %}">News</a></li>
                                 <li><a href="{% url 'contact:contact' %}">Contact</a></li>
                             </ul>

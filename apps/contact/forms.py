@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import Contact
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
@@ -48,5 +48,37 @@ class UserForm(forms.ModelForm):
             'class': 'form-control mb-30',
             'placeholder': 'Your Password',
             'name': "password",
-            'type': 'password'
         })
+
+
+class UserRegisterForm(UserCreationForm):
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'image', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Your Username',
+            'name': "username"
+        })
+        self.fields['image'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Your image',
+            'name': "image"
+        })
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Password',
+            'name': "password1",
+        })
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Confirm Password',
+            'name': "password2",
+        })
+
+

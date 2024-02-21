@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, View
 from django.contrib.auth import views as auth_views, logout
 
-from .forms import ContactForm, UserForm
+from .forms import ContactForm, UserForm, UserRegisterForm
+from .models import ProfilePictures
 
 
 class ContactView(View):
@@ -39,8 +40,26 @@ class LoginView(auth_views.LoginView):
         return render(request, self.template_name, context)
 
 
-class RegisterView(TemplateView):
+
+class RegisterView(View):
     template_name = 'contact/registration.html'
+    form_class = UserRegisterForm
+
+    def get(self, request, *args, **kwargs):
+        form = UserRegisterForm()
+        context = {
+            'form': form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            if request.FILES:
+                ProfilePictures.objects.create(user_id=user.id, picture=request.FILES.get('image'))
+                messages.success(request, 'Successfully registered!')
+        return redirect(reverse_lazy('contact:login'))
 
 
 class LogoutView(View):
