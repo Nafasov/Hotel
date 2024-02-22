@@ -40,7 +40,6 @@ class LoginView(auth_views.LoginView):
         return render(request, self.template_name, context)
 
 
-
 class RegisterView(View):
     template_name = 'contact/registration.html'
     form_class = UserRegisterForm

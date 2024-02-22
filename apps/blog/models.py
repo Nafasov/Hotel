@@ -21,8 +21,11 @@ class BlogPost(BaseModel):
     description = models.TextField()
 
 
-class SendBlogNEW(BaseModel):
+class SendBlogNEW(models.Model):
     email = models.EmailField()
+
+    def __str__(self):
+        return self.email
 
 
 class Tag(BaseModel):

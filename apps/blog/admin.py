@@ -24,7 +24,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 @admin.register(SendBlogNEW)
 class SendBlogNEWAdmin(admin.ModelAdmin):
-    list_display = ("id", "email", 'created_date', )
+    list_display = ("id", "email",)
 
 
 @admin.register(Tag)
