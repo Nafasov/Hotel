@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import SendBlogNEW
+from .models import SendBlogNEW, CommentNewBlog
 
 
 class SendBlogNEWForm(forms.ModelForm):
@@ -14,4 +14,20 @@ class SendBlogNEWForm(forms.ModelForm):
             'class': 'form-control',
             'placeholder': "Enter your email...",
             'name': "nl-email",
+        })
+
+
+class CommentNewBlogForm(forms.ModelForm):
+    class Meta:
+        model = CommentNewBlog
+        fields = ['author', 'message', ]
+        exclude = ['author', ]
+
+    def __init__(self, *args, **kwargs):
+        super(CommentNewBlogForm, self).__init__(*args, **kwargs)
+        self.fields['message'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': "Start the discussion...",
+            'name': "message",
+
         })

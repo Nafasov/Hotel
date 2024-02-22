@@ -42,6 +42,9 @@ class BlogNEWPost(BaseModel):
     image = models.ImageField(upload_to='blog/new')
     tags = models.ManyToManyField(Tag)
 
+    def __str__(self):
+        return self.title
+
 
 class ContentNewBlog(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='contents', null=True)
@@ -52,13 +55,17 @@ class ContentNewBlog(BaseModel):
 class CommentNewBlog(BaseModel):
     blog_post = models.ForeignKey(BlogNEWPost, on_delete=models.CASCADE, related_name='comments', null=True)
     author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
-    message = models.TextField()
-    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, related_name="blog_children")
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     top_level_comment_id = models.IntegerField(null=True, blank=True)
+    message = models.TextField()
 
+    @property
     def blog_children(self):
-        model = self.__class__
-        return model.objects.filter(top_level_comment_id=self.id)
+        if not self.parent:
+            return CommentNewBlog.objects.filter(top_level_comment_id=self.id)
+        return None
+        # model = self.__class__
+        # return model.objects.filter(top_level_comment_id=self.id)
 
 
 class BlogNewLike(BaseModel):
@@ -69,10 +76,10 @@ class BlogNewLike(BaseModel):
 @receiver(pre_save, sender=CommentNewBlog)
 def comment_pre_save(sender, instance, **kwargs):
     if instance.parent:
-        if not instance.parent.top_level_comment_id:
-            instance.parent.top_level_comment_id = instance.parent.id
-        else:
+        if instance.parent.top_level_comment_id:
             instance.top_level_comment_id = instance.parent.top_level_comment_id
+        else:
+            instance.top_level_comment_id = instance.parent.id
 
 
 @receiver(pre_save, sender=BlogNEWPost)
