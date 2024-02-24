@@ -18,8 +18,8 @@ class Rooms(BaseModel):
     bed = models.CharField(max_length=221)
     cost = models.CharField(max_length=25)
     size = models.CharField(max_length=25)
-    adults = models.IntegerField()
-    children = models.IntegerField()
+    adults = models.IntegerField(null=True, blank=True)
+    children = models.IntegerField(null=True)
     capacity = models.CharField(max_length=40)
 
     def __str__(self):
@@ -30,6 +30,9 @@ class RoomContent(models.Model):
     content = models.TextField(null=True, blank=True)
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='contents')
     is_check = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.content
 
 
 class RoomImages(models.Model):
@@ -42,11 +45,11 @@ class Booking(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
     check_in = models.DateTimeField()
     check_out = models.DateTimeField()
-    adults = models.IntegerField()
-    children = models.IntegerField()
+    adults = models.IntegerField(default=0)
+    children = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.check_out
+        return f'{self.check_in} - {self.check_out}'
 
 
 class RoomComments(BaseModel):
@@ -58,7 +61,6 @@ class RoomComments(BaseModel):
     room_star3 = models.BooleanField(default=False)
     room_star4 = models.BooleanField(default=False)
     room_star5 = models.BooleanField(default=False)
-
 
 
 
