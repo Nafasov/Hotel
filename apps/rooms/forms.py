@@ -41,23 +41,23 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['room', 'author', 'check_out', 'check_in', 'children', 'adults']
-        exclude = ['room', 'author']
-
-    def __init__(self, *args, **kwargs):
-        super(BookingForm, self).__init__(*args, **kwargs)
-        self.fields['check_out'].widget.attrs.update({
-            'class': 'form-control mb-30',
-            'name': 'check_out'
-        })
-        self.fields['check_in'].widget.attrs.update({
-            'class': 'form-control mb-30',
-            'name': 'check_in'
-        })
-        self.fields['children'].widget.attrs.update({
-            'class': 'form-control mb-30',
-            'name': 'children'
-        })
-        self.fields['adults'].widget.attrs.update({
-            'class': 'form-control mb-30',
-            'name': 'adults'
-        })
+    #     exclude = ['room', 'author']
+    #
+    # def __init__(self, *args, **kwargs):
+    #     super(BookingForm, self).__init__(*args, **kwargs)
+    #     self.fields['check_out'].widget.attrs.update({
+    #         'class': 'form-control mb-30',
+    #         'name': 'check_out'
+    #     })
+    #     self.fields['check_in'].widget.attrs.update({
+    #         'class': 'form-control mb-30',
+    #         'name': 'check_in'
+    #     })
+    #     self.fields['children'].widget.attrs.update({
+    #         'class': 'form-control mb-30',
+    #         'name': 'children'
+    #     })
+    #     self.fields['adults'].widget.attrs.update({
+    #         'class': 'form-control mb-30',
+    #         'name': 'adults'
+    #     })

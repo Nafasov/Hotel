@@ -25,14 +25,9 @@ class RoomImagesAdmin(admin.TabularInline):
     extra = 1
 
 
-class RoomDataAdmin(admin.TabularInline):
-    model = Booking
-    extra = 1
-
-
 @admin.register(Rooms)
 class RoomAdmin(admin.ModelAdmin):
-    inlines = (RoomContentAdmin, RoomImagesAdmin, RoomDataAdmin)
+    inlines = (RoomContentAdmin, RoomImagesAdmin)
     list_display = ('id', 'title', 'created_date')
     search_fields = ('id', 'title')
     date_hierarchy = 'created_date'
@@ -48,3 +43,6 @@ class RoomCommentsAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ('id', )
