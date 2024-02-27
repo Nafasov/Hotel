@@ -1,11 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.core.paginator import Paginator
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView, DetailView
 from django.urls import reverse_lazy
 
 
-from .models import BlogNEWPost, Tag, SendBlogNEW, CommentNewBlog
+from .models import BlogNEWPost, Tag, SendBlogNEW, CommentNewBlog, BlogPost
 from .forms import SendBlogNEWForm, CommentNewBlogForm
 
 
@@ -79,3 +79,10 @@ class BlogDetailView(View):
 
         return self.get(request, *args, **kwargs)
 
+
+class BlogDetail(View):
+    template_name = 'blog/blog-detail.html'
+
+    def get(self, request, *args, **kwargs):
+        blog = get_object_or_404(BlogPost, id=kwargs['pk'])
+        return render(request, self.template_name, {'blog': blog})

@@ -263,7 +263,7 @@
                                 <h5>{{ blog.title|slice:40 }}</h5>
                                 <p>{{ blog.description|slice:80 }} ...</p>
                             </div>
-                            <a href="#" class="btn project-btn">Discover Now <i class="fa fa-long-arrow-right"
+                            <a href="{% url 'blog:detail' blog.id %}" class="btn project-btn">Discover Now <i class="fa fa-long-arrow-right"
                                                                                 aria-hidden="true"></i></a>
                         </div>
                     </div>

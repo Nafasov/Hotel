@@ -83,7 +83,11 @@
                                     <div class="comment-content d-flex">
 
                                         <div class="comment-author">
-                                            <img src="{{ comment.image.url }}" alt="author">
+                                            {% if comment.author.image %}
+                                                <img src="{{ comment.image.url }}" alt="author">
+                                            {% else %}
+                                                <img src="{% static 'img/bg-img/img.png' %}" alt="author">
+                                            {% endif %}
                                         </div>
 
                                         <div class="comment-meta">
@@ -99,8 +103,11 @@
                                             {% for child in comment.blog_children.all %}
                                                 <li class="single_comment_area">
                                                     <div class="comment-content d-flex">
-                                                        <div class="comment-author">
+                                                        <div class="comment-author">{% if comment.author.image %}
                                                             <img src="{{ child.image.url }}" alt="author">
+                                                        {% else %}
+                                                            <img src="{% static 'img/bg-img/img.png' %}" alt="author">
+                                                        {% endif %}
                                                         </div>
                                                         <div class="comment-meta">
                                                             <a href="#"
@@ -137,7 +144,7 @@
                                 </div>
                             </form>
                         {% else %}
-                    	    <h3 style="color: #dc3545" class="text-center">You should login first!</h3>
+                            <h3 style="color: #dc3545" class="text-center">You should log in first!</h3>
                         {% endif %}
                     </div>
                 </div>

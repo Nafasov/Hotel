@@ -1,0 +1,16 @@
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div style="background-color: #17a2b8; color: #cccccc" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+        {% if message.tags == "error" %}
+            <div style="color: #cccccc; background-color: #dc3545 " role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

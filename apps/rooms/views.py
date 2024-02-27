@@ -74,19 +74,18 @@ class RoomDetailView(View):
                 'check_out': check_out
             }
             print(check_in, check_out, adults, children)
-            Booking.objects.create(
-                author=user,
-                check_in=check_in,
-                adults=adults,
-                children=children,
-                check_out=check_out,
-                room_id=kwargs['pk'],
-            )
-            # if booking.is_valid():
-            #     print("aaaaaaaaaaaaaaaaaaaaaaa")
-            #     booking.save()
-            #     messages.success(request, 'The room has been successfully booked!')
-            #     return redirect('.')
+            if check_in and check_out:
+                Booking.objects.create(
+                    author=user,
+                    check_in=check_in,
+                    adults=adults,
+                    children=children,
+                    check_out=check_out,
+                    room_id=kwargs['pk'],
+                    )
+                messages.success(request, 'The room has been successfully booked!')
+                return redirect('.')
+
             form = RoomCommentsForm(request.POST)
             if form.is_valid():
                 form = form.save(commit=False)
