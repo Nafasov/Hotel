@@ -57,8 +57,9 @@ class RegisterView(View):
             user = form.save()
             if request.FILES:
                 ProfilePictures.objects.create(user_id=user.id, picture=request.FILES.get('image'))
-                messages.success(request, 'Successfully registered!')
-        return redirect(reverse_lazy('contact:login'))
+            messages.success(request, 'Successfully registered!')
+            return redirect(reverse_lazy('contact:login'))
+        return self.get(request, *args, **kwargs)
 
 
 class LogoutView(View):

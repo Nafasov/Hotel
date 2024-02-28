@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import Contact
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 
@@ -82,3 +82,24 @@ class UserRegisterForm(UserCreationForm):
         })
 
 
+class PasswordChangeForm1(PasswordChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangeForm1, self).__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Old Password',
+            'name': "old_password"
+        })
+
+        self.fields['new_password1'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'New Password',
+            'name': "new_password1"
+        })
+
+        self.fields['new_password2'].widget.attrs.update({
+            'class': 'form-control mb-30',
+            'placeholder': 'Confirm New Password',
+            'name': "new_password2"
+        })
