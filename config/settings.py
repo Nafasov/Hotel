@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'ckeditor',
 
     'django_celery_results',
+    'django_celery_beat',
 
     'apps.blog',
     'apps.main',
@@ -160,6 +161,10 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Tashkent'
+
+
+# CELERY BEAT
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 
 CKEDITOR_CONFIGS = {

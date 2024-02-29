@@ -5,7 +5,7 @@ from django.views.generic import View
 from .models import HomeBanner, Service, AboutUs
 from apps.blog.models import BlogPost, BlogNEWPost
 from apps.rooms.models import Rooms, RoomComments
-from .send_email import send_email
+from .send_email import send_email, send_email_date
 
 
 class HomeView(View):
@@ -15,6 +15,8 @@ class HomeView(View):
         recipient_list = ['ozodjonsalohiddinov08@gmail.com', 'mirzonafasov20@gmail.com', ]
         # send_email.delay()
         send_email.apply_async((recipient_list, ))
+        # send_email_date.apply_async((recipient_list, ))
+
         home_banner = HomeBanner.objects.all()
         service = Service.objects.all()
         blog_posts = BlogPost.objects.all()
