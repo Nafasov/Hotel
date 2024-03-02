@@ -18,14 +18,15 @@ class RoomsView(View):
         chick_out = request.GET.get('check_out')
         adults = request.GET.get('adults')
         children = request.GET.get('children')
-        adults = int(adults)
-        children = int(children)
         print(chick_in, chick_out, adults, children)
         if chick_in and chick_out:
             print(chick_in, chick_out)
             rooms = rooms.filter(~Q(datas__check_in__lte=chick_out) | ~Q(datas__check_out__gte=chick_in))
         if children or adults:
-            rooms = rooms.filter(Q(children__gte=children) or Q(adults__gte=adults))
+            adults = int(adults)
+            children = int(children)
+            rooms = rooms.filter(Q(children__gte=children))
+            rooms = rooms.filter(Q(adults__gte=adults))
         paginator = Paginator(rooms, 6)
         page = request.GET.get('page')
         rooms = paginator.get_page(page)
