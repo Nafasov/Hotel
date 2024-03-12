@@ -85,9 +85,9 @@
 
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="300ms">
-                            <a href="{% url 'blog:single-blog' %}"><img src="{{ blog_new_post.image.url }}" alt></a>
+                            <a href="{% url 'blog:single-blog' blog_new_post.id %}"><img src="{{ blog_new_post.image.url }}" alt></a>
                             <div class="service-title d-flex align-items-center justify-content-center">
-                                <a href="{% url 'blog:single-blog' %}"><h5>{{ blog_new_post.title|slice:29 }}</h5></a>
+                                <a href="{% url 'blog:single-blog' blog_new_post.id %}"><h5>{{ blog_new_post.title|slice:29 }}</h5></a>
                             </div>
                         </div>
                     </div>

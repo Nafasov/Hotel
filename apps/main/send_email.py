@@ -22,5 +22,5 @@ def send_email_date(*args, **kwargs):
     subject = 'Thank you for registering to our'
     message = f'{time} is now'
     email_from = os.getenv('EMAIL_HOST_USER')
-    send_mail(subject, message, email_from, ['ozodjonsalohiddinov08@gmail.com', 'mirzonafasov20@gmail.com', ])
+    send_mail(subject, message, email_from, ['ozodjonsalohiddinov08@gmail.com', 'mirzonafasov20@gmail.com'])
     return 'send mail success time'

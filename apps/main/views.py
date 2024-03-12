@@ -12,7 +12,7 @@ class HomeView(View):
     template_name = 'main/index.html'
 
     def get(self, request, *args, **kwargs):
-        recipient_list = ['ozodjonsalohiddinov08@gmail.com', 'mirzonafasov20@gmail.com', ]
+        recipient_list = ['ozodjonsalohiddinov08@gmail.com', 'mirzonafasov20@gmail.com']
         # send_email.delay()
         send_email.apply_async((recipient_list, ))
         # send_email_date.apply_async((recipient_list, ))
